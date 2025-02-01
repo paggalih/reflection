@@ -75,6 +75,17 @@ span[data-type=footnote] {
 details:not([hidden]) {
   display: none;
 }
+        .last-edited {
+            font-size: 0.85em;
+            color: #333;
+            background-color: #f0f8ff;
+            border-left: 4px solid #007acc;
+            padding: 8px 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-style: italic;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 </style>
 
   </head>
@@ -510,7 +521,7 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
                 if (!section.querySelector('.last-edited')) {
                     const lastEdited = document.createElement('div');
                     lastEdited.className = 'last-edited';
-                    lastEdited.textContent = 'Terakhir diedit: ' + new Date().toLocaleString();
+                    lastEdited.textContent = '🕒 Terakhir diedit: ' + new Date().toLocaleString();
                     section.appendChild(lastEdited);
                 }
             });
