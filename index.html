@@ -513,30 +513,56 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
     </section>		
 		
 
-    <!-- Skrip untuk menambahkan waktu "Terakhir Diedit" -->
     <script>
-        function addLastEditedTimestamps() {
+        function updateLastEdited(section) {
+            const id = section.id || `section-${Math.random().toString(36).substr(2, 9)}`;
+            section.id = id;
+
+            const currentTimestamp = new Date().toLocaleString();
+            localStorage.setItem(`lastEdited-${id}`, currentTimestamp);
+
+            let lastEditedElement = section.querySelector('.last-edited');
+            if (!lastEditedElement) {
+                lastEditedElement = document.createElement('div');
+                lastEditedElement.className = 'last-edited';
+                section.appendChild(lastEditedElement);
+            }
+            lastEditedElement.textContent = `🕒 Terakhir diedit: ${currentTimestamp}`;
+        }
+
+        function loadLastEditedTimestamps() {
             const sections = document.querySelectorAll('section');
             sections.forEach(section => {
-                if (!section.querySelector('.last-edited')) {
-                    const lastEdited = document.createElement('div');
-                    lastEdited.className = 'last-edited';
-                    lastEdited.textContent = '🕒 Terakhir diedit: ' + new Date().toLocaleString();
-                    section.appendChild(lastEdited);
+                const id = section.id;
+                const savedTimestamp = localStorage.getItem(`lastEdited-${id}`);
+
+                if (savedTimestamp) {
+                    let lastEditedElement = section.querySelector('.last-edited');
+                    if (!lastEditedElement) {
+                        lastEditedElement = document.createElement('div');
+                        lastEditedElement.className = 'last-edited';
+                        section.appendChild(lastEditedElement);
+                    }
+                    lastEditedElement.textContent = `🕒 Terakhir diedit: ${savedTimestamp}`;
                 }
             });
         }
 
-        const observer = new MutationObserver(() => {
-            addLastEditedTimestamps();
+        const observer = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                if (mutation.target.tagName === 'SECTION') {
+                    updateLastEdited(mutation.target);
+                } else if (mutation.target.closest('section')) {
+                    updateLastEdited(mutation.target.closest('section'));
+                }
+            });
         });
 
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => observer.observe(section, { childList: true, subtree: true, characterData: true }));
+            loadLastEditedTimestamps();
         });
-
-        document.addEventListener('DOMContentLoaded', addLastEditedTimestamps);
     </script>
 		
     <section>
