@@ -75,17 +75,6 @@ span[data-type=footnote] {
 details:not([hidden]) {
   display: none;
 }
-        .last-edited {
-            font-size: 0.85em;
-            color: #333;
-            background-color: #f0f8ff;
-            border-left: 4px solid #007acc;
-            padding: 8px 12px;
-            margin-top: 10px;
-            border-radius: 5px;
-            font-style: italic;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
 </style>
 
   </head>
@@ -511,60 +500,7 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
   
 <!-- ========================================	   -->
     </section>		
-		
-
-    <script>
-        function updateLastEdited(section) {
-            const id = section.id || `section-${Math.random().toString(36).substr(2, 9)}`;
-            section.id = id;
-
-            const currentTimestamp = new Date().toLocaleString();
-            localStorage.setItem(`lastEdited-${id}`, currentTimestamp);
-
-            let lastEditedElement = section.querySelector('.last-edited');
-            if (!lastEditedElement) {
-                lastEditedElement = document.createElement('div');
-                lastEditedElement.className = 'last-edited';
-                section.appendChild(lastEditedElement);
-            }
-            lastEditedElement.textContent = `🕒 Terakhir diedit: ${currentTimestamp}`;
-        }
-
-        function loadLastEditedTimestamps() {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                const id = section.id;
-                const savedTimestamp = localStorage.getItem(`lastEdited-${id}`);
-
-                if (savedTimestamp) {
-                    let lastEditedElement = section.querySelector('.last-edited');
-                    if (!lastEditedElement) {
-                        lastEditedElement = document.createElement('div');
-                        lastEditedElement.className = 'last-edited';
-                        section.appendChild(lastEditedElement);
-                    }
-                    lastEditedElement.textContent = `🕒 Terakhir diedit: ${savedTimestamp}`;
-                }
-            });
-        }
-
-        const observer = new MutationObserver(mutations => {
-            mutations.forEach(mutation => {
-                if (mutation.target.tagName === 'SECTION') {
-                    updateLastEdited(mutation.target);
-                } else if (mutation.target.closest('section')) {
-                    updateLastEdited(mutation.target.closest('section'));
-                }
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => observer.observe(section, { childList: true, subtree: true, characterData: true }));
-            loadLastEditedTimestamps();
-        });
-    </script>
-		
+			
     <section>
       <h2>Galih Pradananta</h2>
 			<a href="https://paggalih.github.io">Home</a><br><br>
