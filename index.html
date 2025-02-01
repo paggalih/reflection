@@ -500,6 +500,34 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
   
 <!-- ========================================	   -->
     </section>		
+		
+
+    <!-- Skrip untuk menambahkan waktu "Terakhir Diedit" -->
+    <script>
+        function addLastEditedTimestamps() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                if (!section.querySelector('.last-edited')) {
+                    const lastEdited = document.createElement('div');
+                    lastEdited.className = 'last-edited';
+                    lastEdited.textContent = 'Terakhir diedit: ' + new Date().toLocaleString();
+                    section.appendChild(lastEdited);
+                }
+            });
+        }
+
+        const observer = new MutationObserver(() => {
+            addLastEditedTimestamps();
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        document.addEventListener('DOMContentLoaded', addLastEditedTimestamps);
+    </script>
+		
     <section>
       <h2>Galih Pradananta</h2>
 			<a href="https://paggalih.github.io">Home</a><br><br>
