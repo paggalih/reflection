@@ -830,27 +830,8 @@ document.getElementById("liveSearchInput").addEventListener("keypress", function
   });
 </script>
 
-<!-- Container Tombol Bendera -->
-<div id="translate-flags" style="
-  position: fixed; 
-  top: 10px; 
-  right: 10px; 
-  z-index: 9999; 
-  background: rgba(255, 255, 255, 0.9); 
-  padding: 6px; 
-  border-radius: 10px; 
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
-">
-  <img src="https://flagcdn.com/w40/id.png" alt="Indonesia" width="30" id="flag-id" 
-       style="cursor:pointer; margin-right:5px; border-radius: 5px;">
-  <img src="https://flagcdn.com/w40/gb.png" alt="English" width="30" id="flag-en" 
-       style="cursor:pointer; border-radius: 5px;">
-</div>
+<div id="google_translate_element" style="position: fixed; top: 10px; left: 10px; z-index: 999;"></div>
 
-<!-- Google Translate Widget (disembunyikan) -->
-<div id="google_translate_element" style="display: none;"></div>
-
-<!-- Script Google Translate -->
 <script type="text/javascript">
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
@@ -860,26 +841,11 @@ document.getElementById("liveSearchInput").addEventListener("keypress", function
     }, 'google_translate_element');
   }
 </script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<!-- Tombol Bendera untuk Mengubah Bahasa -->
-<script>
-  function changeLanguageTo(langCode) {
-    const interval = setInterval(() => {
-      const combo = document.querySelector('.goog-te-combo');
-      if (combo) {
-        combo.value = langCode;
-        combo.dispatchEvent(new Event('change'));
-        clearInterval(interval);
-      }
-    }, 100);
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('flag-id').addEventListener('click', () => changeLanguageTo('id'));
-    document.getElementById('flag-en').addEventListener('click', () => changeLanguageTo('en'));
-  });
+<script type="text/javascript" 
+  src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
 </script>
+
 
   </body>
 </html>
