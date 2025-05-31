@@ -830,14 +830,25 @@ document.getElementById("liveSearchInput").addEventListener("keypress", function
   });
 </script>
 
-<!-- Tombol Bendera -->
-<div id="translate-flags" style="position: fixed; top: 10px; left: 10px; z-index: 999;">
-  <img src="https://flagcdn.com/w40/id.png" alt="Indonesia" width="30" id="flag-id" style="cursor:pointer; margin-right:5px;">
-  <img src="https://flagcdn.com/w40/gb.png" alt="English" width="30" id="flag-en" style="cursor:pointer;">
+<!-- Container Tombol Bendera -->
+<div id="translate-flags" style="
+  position: fixed; 
+  top: 10px; 
+  right: 10px; 
+  z-index: 9999; 
+  background: rgba(255, 255, 255, 0.9); 
+  padding: 6px; 
+  border-radius: 10px; 
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+">
+  <img src="https://flagcdn.com/w40/id.png" alt="Indonesia" width="30" id="flag-id" 
+       style="cursor:pointer; margin-right:5px; border-radius: 5px;">
+  <img src="https://flagcdn.com/w40/gb.png" alt="English" width="30" id="flag-en" 
+       style="cursor:pointer; border-radius: 5px;">
 </div>
 
-<!-- Google Translate widget (disembunyikan) -->
-<div id="google_translate_element" style="display:none;"></div>
+<!-- Google Translate Widget (disembunyikan) -->
+<div id="google_translate_element" style="display: none;"></div>
 
 <!-- Script Google Translate -->
 <script type="text/javascript">
@@ -851,7 +862,7 @@ document.getElementById("liveSearchInput").addEventListener("keypress", function
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<!-- Script pemicu saat bendera diklik -->
+<!-- Tombol Bendera untuk Mengubah Bahasa -->
 <script>
   function changeLanguageTo(langCode) {
     const interval = setInterval(() => {
@@ -869,8 +880,6 @@ document.getElementById("liveSearchInput").addEventListener("keypress", function
     document.getElementById('flag-en').addEventListener('click', () => changeLanguageTo('en'));
   });
 </script>
-
-
 
   </body>
 </html>
