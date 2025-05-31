@@ -799,7 +799,16 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
     clearTimeout(this.searchTimer);
     this.searchTimer = setTimeout(performSearch, 2000);
   });
-  
+// Enter key event
+document.getElementById("liveSearchInput").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    // Cancel the debounced search
+    clearTimeout(this.searchTimer);
+    // Perform search immediately
+    performSearch();
+  }
+});
+
   document.getElementById("liveSearchInput").addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
       if (e.shiftKey) {
