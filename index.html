@@ -622,7 +622,7 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
     <script src="https://paggalih.github.io/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Floating Live Search Box -->
-<div id="liveSearchBox" class="position-fixed top-0 end-0 m-3 bg-white border rounded shadow p-2" style="z-index:9999; width: 280px;">
+<div id="liveSearchBox" class="position-fixed top-0 end-0 m-3 bg-white border rounded shadow p-2" style="z-index:9999; width: 200px;">
   <div class="d-flex align-items-center mb-2">
     <img src="https://paggalih.github.io/assets/img/letter-g.gif" alt="search-icon" width="32" height="32" class="me-2">
     <input type="text" id="liveSearchInput" class="form-control" placeholder="Cari di sini ..." autocomplete="off">
@@ -830,16 +830,16 @@ document.getElementById("liveSearchInput").addEventListener("keypress", function
   });
 </script>
 
-<!-- Tombol bendera -->
+<!-- Tombol Bendera -->
 <div id="translate-flags" style="position: fixed; top: 10px; left: 10px; z-index: 999;">
   <img src="https://flagcdn.com/w40/id.png" alt="Indonesia" width="30" id="flag-id" style="cursor:pointer; margin-right:5px;">
   <img src="https://flagcdn.com/w40/gb.png" alt="English" width="30" id="flag-en" style="cursor:pointer;">
 </div>
 
-<!-- Google Translate Widget (tidak ditampilkan) -->
+<!-- Google Translate widget (disembunyikan) -->
 <div id="google_translate_element" style="display:none;"></div>
 
-<!-- Google Translate Script -->
+<!-- Script Google Translate -->
 <script type="text/javascript">
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
@@ -851,22 +851,25 @@ document.getElementById("liveSearchInput").addEventListener("keypress", function
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+<!-- Script pemicu saat bendera diklik -->
 <script>
-  // Fungsi untuk memicu Google Translate
-  function triggerTranslate(lang) {
-    const select = document.querySelector(".goog-te-combo");
-    if (select) {
-      select.value = lang;
-      select.dispatchEvent(new Event("change"));
-    }
+  function changeLanguageTo(langCode) {
+    const interval = setInterval(() => {
+      const combo = document.querySelector('.goog-te-combo');
+      if (combo) {
+        combo.value = langCode;
+        combo.dispatchEvent(new Event('change'));
+        clearInterval(interval);
+      }
+    }, 100);
   }
 
-  // Event klik pada ikon bendera
-  document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("flag-id").addEventListener("click", () => triggerTranslate("id"));
-    document.getElementById("flag-en").addEventListener("click", () => triggerTranslate("en"));
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('flag-id').addEventListener('click', () => changeLanguageTo('id'));
+    document.getElementById('flag-en').addEventListener('click', () => changeLanguageTo('en'));
   });
 </script>
+
 
 
   </body>
