@@ -729,7 +729,8 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
     // Clear previous highlights
     clearHighlights();
     
-    const keyword = document.getElementById("liveSearchInput").value.trim();
+    <!-- const keyword = document.getElementById("liveSearchInput").value.trim(); -->
+    const keyword = document.getElementById("liveSearchInput").value;
     if (!keyword) return;
     
     searchActive = true;
