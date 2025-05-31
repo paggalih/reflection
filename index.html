@@ -830,8 +830,16 @@ document.getElementById("liveSearchInput").addEventListener("keypress", function
   });
 </script>
 
-<div id="google_translate_element" style="position: fixed; top: 10px; left: 10px; z-index: 999;"></div>
+<!-- Tombol bendera -->
+<div id="translate-flags" style="position: fixed; top: 10px; right: 10px; z-index: 999;">
+  <img src="https://flagcdn.com/w40/id.png" alt="Indonesia" width="30" id="flag-id" style="cursor:pointer; margin-right:5px;">
+  <img src="https://flagcdn.com/w40/gb.png" alt="English" width="30" id="flag-en" style="cursor:pointer;">
+</div>
 
+<!-- Google Translate Widget (tidak ditampilkan) -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<!-- Google Translate Script -->
 <script type="text/javascript">
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
@@ -841,10 +849,25 @@ document.getElementById("liveSearchInput").addEventListener("keypress", function
     }, 'google_translate_element');
   }
 </script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<script type="text/javascript" 
-  src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+<script>
+  // Fungsi untuk memicu Google Translate
+  function triggerTranslate(lang) {
+    const select = document.querySelector(".goog-te-combo");
+    if (select) {
+      select.value = lang;
+      select.dispatchEvent(new Event("change"));
+    }
+  }
+
+  // Event klik pada ikon bendera
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("flag-id").addEventListener("click", () => triggerTranslate("id"));
+    document.getElementById("flag-en").addEventListener("click", () => triggerTranslate("en"));
+  });
 </script>
+
 
   </body>
 </html>
