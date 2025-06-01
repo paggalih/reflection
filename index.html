@@ -639,7 +639,7 @@ Saya berterima kasih kepada seluruh pihak terutama kepada Sang Kholiq yang telah
     <div>
       <button class="btn btn-sm btn-outline-secondary" id="prevMatch" disabled>&laquo;</button>
       <button class="btn btn-sm btn-outline-secondary" id="nextMatch" disabled>&raquo;</button>
-      <button class="btn btn-sm btn-outline-danger ms-1" id="clearSearch" title="Clear search">×</button>
+      <!-- <button class="btn btn-sm btn-outline-danger ms-1" id="clearSearch" title="Clear search">×</button> -->
     </div>
   </div>
 </div>
@@ -816,18 +816,18 @@ document.getElementById("liveSearchInput").addEventListener("keypress", function
   }
 });
 
-  document.getElementById("liveSearchInput").addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-      if (e.shiftKey) {
-        scrollToMatch(currentIndex - 1);
-      } else {
-        scrollToMatch(currentIndex + 1);
-      }
-    } else if (e.key === "Escape") {
-      clearHighlights();
-      this.value = "";
-    }
-  });
+  <!-- document.getElementById("liveSearchInput").addEventListener("keydown", function(e) { -->
+    <!-- if (e.key === "Enter") { -->
+      <!-- if (e.shiftKey) { -->
+        <!-- scrollToMatch(currentIndex - 1); -->
+      <!-- } else { -->
+        <!-- scrollToMatch(currentIndex + 1); -->
+      <!-- } -->
+    <!-- } else if (e.key === "Escape") { -->
+      <!-- clearHighlights(); -->
+      <!-- this.value = ""; -->
+    <!-- } -->
+  <!-- }); -->
   
   document.getElementById("prevMatch").addEventListener("click", () => scrollToMatch(currentIndex - 1));
   document.getElementById("nextMatch").addEventListener("click", () => scrollToMatch(currentIndex + 1));
